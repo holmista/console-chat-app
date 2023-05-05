@@ -20,7 +20,6 @@ public class SendMessage implements Runnable{
                 break;
             System.out.println("Enter your message: ");
             String message = scanner.nextLine();
-            System.out.println("scanner message: "+message);
             try{
                 PrintWriter writer = new PrintWriter(this.socket.getOutputStream(), true);
                 writer.println(message+"\nEND_OF_MESSAGE");

@@ -20,6 +20,7 @@ public class Client {
     }
 
     public void launch(){
+        sharedData.setConnectionActive(true);
         this.createConnection();
         SendMessage sendMessage = new SendMessage(this.socket, this.sharedData);
         Thread sendMessageThread = new Thread(sendMessage);

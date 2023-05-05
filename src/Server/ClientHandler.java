@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-public class ClientHandler extends Thread{
+public class ClientHandler implements Runnable{
     private final Socket clientSocket;
     private final String clientSocketId;
     private final EventListener listener;
