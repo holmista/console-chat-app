@@ -18,10 +18,10 @@ public class AcceptConnections implements Runnable {
         while(true){
             try{
                 Socket socket = this.serverSocket.accept();
+                CustomSocket customSocket = new CustomSocket(socket);
                 System.out.println("New client connected: " + socket.getInetAddress());
-                String socketId = socket.getInetAddress().toString() + socket.getPort();
-                this.listener.addConnection(socketId, socket);
-                ClientHandler clientHandler = new ClientHandler(socket, socketId, listener);
+                this.listener.addConnection(customSocket);
+                ClientHandler clientHandler = new ClientHandler(customSocket, listener);
                 Thread clientHandlerThread = new Thread(clientHandler);
                 clientHandlerThread.start();
             }catch (IOException e){

@@ -19,6 +19,7 @@ public class AcceptMessage implements Runnable {
             StringBuilder message = new StringBuilder();
             String line;
             while((line = buffer.readLine()) != null){
+                System.out.println("line in client: "+line);
                 if (line.equals("END_OF_MESSAGE")) {
                     System.out.println(message.toString());
                     message.setLength(0);

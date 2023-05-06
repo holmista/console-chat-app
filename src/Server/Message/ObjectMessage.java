@@ -6,6 +6,7 @@ import java.net.Socket;
 
 public class ObjectMessage extends Message{
     public final String message;
+    private static ObjectOutputStream out = null;
 
     public ObjectMessage(String message){
         this.message = message;
@@ -13,8 +14,10 @@ public class ObjectMessage extends Message{
     @Override
     public void send(Socket socket) {
         try{
-            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-            out.writeObject(this.message);
+            if (out == null) {
+                out = new ObjectOutputStream(socket.getOutputStream());
+            }
+            out.writeObject(this.message+"\nEND_OF_MESSAGE");
             out.flush();
         }
         catch (IOException e){
